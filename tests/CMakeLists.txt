@@ -3,7 +3,11 @@ project(SnakeTests)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-add_compile_options(-Wall -Wextra -Wpedantic)
+if(MSVC)
+    add_compile_options(/W4 /permissive-)
+else()
+    add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
 add_executable(test_collision
     test_collision.cpp
@@ -98,7 +102,6 @@ add_executable(test_game_simulation
 )
 target_include_directories(test_game_simulation PRIVATE ../src ${CMAKE_CURRENT_SOURCE_DIR})
 
-enable_testing()
 add_test(NAME CollisionTests COMMAND test_collision)
 add_test(NAME PauseStateTests COMMAND test_pause_state)
 add_test(NAME DirectionRulesTests COMMAND test_direction_rules)
