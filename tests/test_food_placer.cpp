@@ -130,6 +130,15 @@ void test_negative_grid_dimensions_return_false()
     ASSERT_FALSE(SelectFoodPosition(out, -5, -5, body, MakeSequenceFn({0}), MakeSequenceFn({0}), 3));
 }
 
+void test_normalizes_deterministic_coordinates()
+{
+    GridPoint out{};
+    ASSERT_TRUE(SelectFoodPosition(out, 5, 4, {}, MakeSequenceFn({-1}),
+                                   MakeSequenceFn({9}), 1));
+    ASSERT_EQ(out.x, 4);
+    ASSERT_EQ(out.y, 1);
+}
+
 int main()
 {
     test_selects_first_safe_random_candidate();
@@ -142,5 +151,6 @@ int main()
     test_full_board_various_sizes();
     test_random_attempts_do_not_exceed_bound();
     test_negative_grid_dimensions_return_false();
+    test_normalizes_deterministic_coordinates();
     return test_summary();
 }

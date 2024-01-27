@@ -1,5 +1,6 @@
 #include "food_placer.h"
 #include "food_safety.h"
+#include "grid_math.h"
 
 bool SelectFoodPosition(GridPoint &out, int grid_width, int grid_height,
                         const std::vector<GridPoint> &snake_body,
@@ -13,7 +14,8 @@ bool SelectFoodPosition(GridPoint &out, int grid_width, int grid_height,
 
     for (int attempt = 0; attempt < max_random_attempts; ++attempt)
     {
-        GridPoint candidate{random_x(grid_width), random_y(grid_height)};
+        GridPoint candidate{WrapGridCoordinate(random_x(grid_width), grid_width),
+                            WrapGridCoordinate(random_y(grid_height), grid_height)};
         if (IsFoodSafe(candidate, grid_width, grid_height, snake_body))
         {
             out = candidate;

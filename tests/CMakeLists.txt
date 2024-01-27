@@ -80,6 +80,7 @@ add_executable(test_food_placer
     ../src/food_placer.cpp
     ../src/food_safety.cpp
     ../src/collision.cpp
+    ../src/grid_math.cpp
 )
 target_include_directories(test_food_placer PRIVATE ../src ${CMAKE_CURRENT_SOURCE_DIR})
 
