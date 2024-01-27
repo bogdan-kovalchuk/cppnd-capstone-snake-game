@@ -49,6 +49,24 @@ int CountUnsafePositions(int grid_width, int grid_height,
     return count;
 }
 
+int CountSafePositions(int grid_width, int grid_height,
+                       const std::vector<GridPoint> &snake_body)
+{
+    if (!IsValidGrid(grid_width, grid_height))
+    {
+        return 0;
+    }
+    int count = 0;
+    for (int y = 0; y < grid_height; ++y)
+    {
+        for (int x = 0; x < grid_width; ++x)
+        {
+            count += IsFoodClearOfSnake({x, y}, snake_body) ? 1 : 0;
+        }
+    }
+    return count;
+}
+
 bool FindFirstSafePosition(GridPoint &out, int grid_width, int grid_height,
                            const std::vector<GridPoint> &snake_body)
 {

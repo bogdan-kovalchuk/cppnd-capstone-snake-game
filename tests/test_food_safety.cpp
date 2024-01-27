@@ -83,6 +83,13 @@ void test_count_unsafe_full_grid()
     ASSERT_EQ(CountUnsafePositions(2, 2, body), 4);
 }
 
+void test_count_safe_positions_ignores_duplicate_segments()
+{
+    std::vector<GridPoint> body = {{0, 0}, {0, 0}, {1, 0}};
+    ASSERT_EQ(CountSafePositions(2, 2, body), 2);
+    ASSERT_EQ(CountSafePositions(0, 2, body), 0);
+}
+
 int main()
 {
     test_food_on_grid_valid();
@@ -98,5 +105,6 @@ int main()
     test_count_unsafe_with_body();
     test_count_unsafe_invalid_grid();
     test_count_unsafe_full_grid();
+    test_count_safe_positions_ignores_duplicate_segments();
     return test_summary();
 }
