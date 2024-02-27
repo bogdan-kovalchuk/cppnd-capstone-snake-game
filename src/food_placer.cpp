@@ -11,6 +11,10 @@ bool SelectFoodPosition(GridPoint &out, int grid_width, int grid_height,
     {
         return false;
     }
+    if (CountSafePositions(grid_width, grid_height, snake_body) == 0)
+    {
+        return false;
+    }
 
     for (int attempt = 0; attempt < max_random_attempts; ++attempt)
     {

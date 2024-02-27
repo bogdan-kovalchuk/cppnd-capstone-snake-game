@@ -123,6 +123,15 @@ void test_random_attempts_do_not_exceed_bound()
     ASSERT_EQ(call_count, 4);
 }
 
+void test_full_board_does_not_consume_random_values()
+{
+    int calls = 0;
+    RandomCoordFn random = [&calls](int) { ++calls; return 0; };
+    GridPoint out{};
+    ASSERT_FALSE(SelectFoodPosition(out, 1, 1, {{0, 0}}, random, random, 5));
+    ASSERT_EQ(calls, 0);
+}
+
 void test_negative_grid_dimensions_return_false()
 {
     std::vector<GridPoint> body = {};
@@ -150,6 +159,7 @@ int main()
     test_deterministic_repeat_produces_same_result();
     test_full_board_various_sizes();
     test_random_attempts_do_not_exceed_bound();
+    test_full_board_does_not_consume_random_values();
     test_negative_grid_dimensions_return_false();
     test_normalizes_deterministic_coordinates();
     return test_summary();
