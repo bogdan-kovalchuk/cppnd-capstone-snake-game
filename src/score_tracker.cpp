@@ -1,4 +1,5 @@
 #include "score_tracker.h"
+#include <limits>
 
 ScoreTracker::ScoreTracker()
     : score_(0), high_score_(0), new_high_(false)
@@ -11,7 +12,14 @@ void ScoreTracker::AddPoint(int amount)
     {
         return;
     }
-    score_ += amount;
+    if (amount > std::numeric_limits<int>::max() - score_)
+    {
+        score_ = std::numeric_limits<int>::max();
+    }
+    else
+    {
+        score_ += amount;
+    }
     if (score_ > high_score_)
     {
         high_score_ = score_;

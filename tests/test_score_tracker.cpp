@@ -1,5 +1,6 @@
 #include "test_helpers.h"
 #include "score_tracker.h"
+#include <limits>
 
 void test_initial_score_zero()
 {
@@ -82,6 +83,14 @@ void test_reset_clears_new_high_flag()
     ASSERT_FALSE(st.IsNewHighScore());
 }
 
+void test_score_saturates_at_integer_limit()
+{
+    ScoreTracker st;
+    st.AddPoint(std::numeric_limits<int>::max());
+    st.AddPoint(1);
+    ASSERT_EQ(st.GetScore(), std::numeric_limits<int>::max());
+}
+
 int main()
 {
     test_initial_score_zero();
@@ -93,5 +102,6 @@ int main()
     test_new_high_score_flag();
     test_new_high_score_on_tie();
     test_reset_clears_new_high_flag();
+    test_score_saturates_at_integer_limit();
     return test_summary();
 }
