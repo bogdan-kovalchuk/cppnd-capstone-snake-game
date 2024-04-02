@@ -1,5 +1,6 @@
 #include "test_helpers.h"
 #include "growth_tracker.h"
+#include <limits>
 
 void test_initial_pending_zero()
 {
@@ -98,6 +99,14 @@ void test_add_then_consume_cycle()
     ASSERT_FALSE(gt.ConsumeGrowth());
 }
 
+void test_growth_saturates_at_integer_limit()
+{
+    GrowthTracker gt;
+    gt.AddGrowth(std::numeric_limits<int>::max());
+    gt.AddGrowth(1);
+    ASSERT_EQ(gt.GetPending(), std::numeric_limits<int>::max());
+}
+
 int main()
 {
     test_initial_pending_zero();
@@ -112,5 +121,6 @@ int main()
     test_consume_growth_does_not_go_negative();
     test_reset_clears_pending();
     test_add_then_consume_cycle();
+    test_growth_saturates_at_integer_limit();
     return test_summary();
 }

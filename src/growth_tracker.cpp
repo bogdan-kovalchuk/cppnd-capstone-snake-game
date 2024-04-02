@@ -1,4 +1,5 @@
 #include "growth_tracker.h"
+#include <limits>
 
 GrowthTracker::GrowthTracker(int initial_pending)
     : pending_(initial_pending > 0 ? initial_pending : 0)
@@ -7,9 +8,11 @@ GrowthTracker::GrowthTracker(int initial_pending)
 
 void GrowthTracker::AddGrowth(int amount)
 {
-    if (amount > 0)
+    if (amount > 0 && pending_ < std::numeric_limits<int>::max())
     {
-        pending_ += amount;
+        pending_ = amount > std::numeric_limits<int>::max() - pending_
+                       ? std::numeric_limits<int>::max()
+                       : pending_ + amount;
     }
 }
 
