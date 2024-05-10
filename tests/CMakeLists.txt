@@ -12,6 +12,9 @@ endif()
 add_executable(test_grid_math test_grid_math.cpp ../src/grid_math.cpp)
 target_include_directories(test_grid_math PRIVATE ../src ${CMAKE_CURRENT_SOURCE_DIR})
 
+add_executable(test_speed_progression test_speed_progression.cpp ../src/speed_progression.cpp)
+target_include_directories(test_speed_progression PRIVATE ../src ${CMAKE_CURRENT_SOURCE_DIR})
+
 add_executable(test_collision
     test_collision.cpp
     ../src/collision.cpp
@@ -108,6 +111,7 @@ target_include_directories(test_game_simulation PRIVATE ../src ${CMAKE_CURRENT_S
 
 add_test(NAME CollisionTests COMMAND test_collision)
 add_test(NAME GridMathTests COMMAND test_grid_math)
+add_test(NAME SpeedProgressionTests COMMAND test_speed_progression)
 add_test(NAME PauseStateTests COMMAND test_pause_state)
 add_test(NAME DirectionRulesTests COMMAND test_direction_rules)
 add_test(NAME GrowthTrackerTests COMMAND test_growth_tracker)

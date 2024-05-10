@@ -1,6 +1,7 @@
 #include "game.h"
 #include "food_placer.h"
 #include "game_validation.h"
+#include "speed_progression.h"
 #include <iostream>
 #include <SDL2/SDL.h>
 
@@ -146,7 +147,7 @@ void Game::Update()
     PlaceFood();
     // Grow snake and increase speed.
     snake_.GrowBody();
-    snake_.speed += 0.005;
+    snake_.speed = AdvanceSpeed(snake_.speed, 0.005f, 1.0f);
   }
 
   if (!food_valid_)
