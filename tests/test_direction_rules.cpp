@@ -64,7 +64,8 @@ void test_opposite_change_valid_for_size_two()
 void test_direction_change_zero_size()
 {
     ASSERT_FALSE(IsValidDirectionChange(Dir::kUp, Dir::kDown, 0));
-    ASSERT_TRUE(IsValidDirectionChange(Dir::kUp, Dir::kLeft, 0));
+    ASSERT_FALSE(IsValidDirectionChange(Dir::kUp, Dir::kLeft, 0));
+    ASSERT_FALSE(IsValidDirectionChange(Dir::kUp, Dir::kLeft, -1));
 }
 
 int main()

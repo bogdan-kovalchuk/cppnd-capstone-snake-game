@@ -22,6 +22,10 @@ Dir GetOpposite(Dir d)
 
 bool IsValidDirectionChange(Dir current, Dir requested, int snake_size)
 {
+    if (snake_size < 1)
+    {
+        return false;
+    }
     if (current == requested)
     {
         return false;
