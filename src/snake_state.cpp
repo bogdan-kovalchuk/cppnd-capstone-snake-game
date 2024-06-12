@@ -26,6 +26,10 @@ bool IsSnapshotConsistent(const SnakeSnapshot &s)
     {
         return false;
     }
+    if (s.direction < 0 || s.direction > 3)
+    {
+        return false;
+    }
     if (!s.alive && s.pending_growth > 0)
     {
         return false;

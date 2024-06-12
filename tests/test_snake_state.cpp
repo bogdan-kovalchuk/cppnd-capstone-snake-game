@@ -88,6 +88,12 @@ void test_snapshot_consistent_minimum_size()
     ASSERT_TRUE(IsSnapshotConsistent(s));
 }
 
+void test_snapshot_rejects_unknown_direction()
+{
+    ASSERT_FALSE(IsSnapshotConsistent(MakeSnapshot({1, 1}, 1, true, -1, 0)));
+    ASSERT_FALSE(IsSnapshotConsistent(MakeSnapshot({1, 1}, 1, true, 4, 0)));
+}
+
 int main()
 {
     test_make_snapshot();
@@ -103,5 +109,6 @@ int main()
     test_count_body_segments_empty();
     test_count_body_segments_nonempty();
     test_snapshot_consistent_minimum_size();
+    test_snapshot_rejects_unknown_direction();
     return test_summary();
 }
