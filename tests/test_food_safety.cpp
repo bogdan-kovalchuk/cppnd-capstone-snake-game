@@ -90,6 +90,13 @@ void test_count_safe_positions_ignores_duplicate_segments()
     ASSERT_EQ(CountSafePositions(0, 2, body), 0);
 }
 
+void test_board_full_uses_unique_occupied_cells()
+{
+    ASSERT_TRUE(IsBoardFull(1, 1, {{0, 0}, {0, 0}}));
+    ASSERT_FALSE(IsBoardFull(2, 1, {{0, 0}, {0, 0}}));
+    ASSERT_FALSE(IsBoardFull(0, 1, {}));
+}
+
 int main()
 {
     test_food_on_grid_valid();
@@ -106,5 +113,6 @@ int main()
     test_count_unsafe_invalid_grid();
     test_count_unsafe_full_grid();
     test_count_safe_positions_ignores_duplicate_segments();
+    test_board_full_uses_unique_occupied_cells();
     return test_summary();
 }

@@ -67,6 +67,13 @@ int CountSafePositions(int grid_width, int grid_height,
     return count;
 }
 
+bool IsBoardFull(int grid_width, int grid_height,
+                 const std::vector<GridPoint> &snake_body)
+{
+    return IsValidGrid(grid_width, grid_height) &&
+           CountSafePositions(grid_width, grid_height, snake_body) == 0;
+}
+
 bool FindFirstSafePosition(GridPoint &out, int grid_width, int grid_height,
                            const std::vector<GridPoint> &snake_body)
 {
