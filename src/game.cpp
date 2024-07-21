@@ -2,6 +2,7 @@
 #include "food_placer.h"
 #include "game_validation.h"
 #include "speed_progression.h"
+#include "restart_policy.h"
 #include <iostream>
 #include <SDL2/SDL.h>
 
@@ -46,7 +47,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, restart_requested, snake_, play_pause_button_);
 
-    if (restart_requested && !snake_.alive)
+    if (ShouldRestartGame(restart_requested, snake_.alive))
     {
       Restart();
     }
