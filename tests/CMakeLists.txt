@@ -4,7 +4,7 @@ project(SnakeTests)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if(MSVC)
-    add_compile_options(/W4 /permissive-)
+    add_compile_options(/W4 /permissive- /EHsc)
 else()
     add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
@@ -109,6 +109,7 @@ add_executable(test_game_simulation
     ../src/growth_tracker.cpp
     ../src/score_tracker.cpp
     ../src/snake_state.cpp
+    ../src/grid_math.cpp
 )
 target_include_directories(test_game_simulation PRIVATE ../src ${CMAKE_CURRENT_SOURCE_DIR})
 

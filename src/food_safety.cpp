@@ -77,6 +77,7 @@ bool IsBoardFull(int grid_width, int grid_height,
 bool FindFirstSafePosition(GridPoint &out, int grid_width, int grid_height,
                            const std::vector<GridPoint> &snake_body)
 {
+    out = GridPoint{0, 0};
     if (!IsValidGrid(grid_width, grid_height))
     {
         return false;

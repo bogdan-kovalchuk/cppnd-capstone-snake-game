@@ -1,15 +1,12 @@
 cmake_minimum_required(VERSION 3.7)
+project(SnakeGame)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if(NOT MSVC)
     add_compile_options(-std=c++17)
 endif()
-
-set(CXX_FLAGS "-Wall")
-set(CMAKE_CXX_FLAGS, "${CXX_FLAGS}")
-
-project(SnakeGame)
 
 option(BUILD_TESTS "Build focused tests without SDL" OFF)
 if(BUILD_TESTS)

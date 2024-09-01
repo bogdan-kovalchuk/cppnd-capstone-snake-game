@@ -97,6 +97,14 @@ void test_board_full_uses_unique_occupied_cells()
     ASSERT_FALSE(IsBoardFull(0, 1, {}));
 }
 
+void test_failed_scan_resets_output_coordinate()
+{
+    GridPoint out{9, 9};
+    ASSERT_FALSE(FindFirstSafePosition(out, 1, 1, {{0, 0}}));
+    ASSERT_EQ(out.x, 0);
+    ASSERT_EQ(out.y, 0);
+}
+
 int main()
 {
     test_food_on_grid_valid();
@@ -114,5 +122,6 @@ int main()
     test_count_unsafe_full_grid();
     test_count_safe_positions_ignores_duplicate_segments();
     test_board_full_uses_unique_occupied_cells();
+    test_failed_scan_resets_output_coordinate();
     return test_summary();
 }
