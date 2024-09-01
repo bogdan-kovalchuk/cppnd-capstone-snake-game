@@ -18,6 +18,11 @@ bool IsTerminalState(GameOutcome outcome)
     return outcome == GameOutcome::kGameOver;
 }
 
+bool IsUpdateAllowed(GameOutcome outcome)
+{
+    return outcome == GameOutcome::kPlaying;
+}
+
 const char *OutcomeToString(GameOutcome outcome)
 {
     switch (outcome)

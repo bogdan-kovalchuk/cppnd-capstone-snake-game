@@ -3,6 +3,7 @@
 #include "game_validation.h"
 #include "speed_progression.h"
 #include "restart_policy.h"
+#include "game_outcome.h"
 #include <iostream>
 #include <SDL2/SDL.h>
 
@@ -64,7 +65,8 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     update_guard_.SetAlive(snake_.alive);
     update_guard_.SetPaused(pause_state_.IsPaused());
     update_guard_.RequestUpdate();
-    if (update_guard_.ShouldUpdate())
+    if (update_guard_.ShouldUpdate() &&
+        IsUpdateAllowed(EvaluateOutcome(snake_.alive, pause_state_.IsPaused())))
     {
       Update();
       update_guard_.ClearPending();

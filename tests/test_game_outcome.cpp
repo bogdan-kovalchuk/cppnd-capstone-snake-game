@@ -38,6 +38,13 @@ void test_dead_overrides_paused()
     ASSERT_TRUE(IsTerminalState(outcome));
 }
 
+void test_updates_are_allowed_only_while_playing()
+{
+    ASSERT_TRUE(IsUpdateAllowed(GameOutcome::kPlaying));
+    ASSERT_FALSE(IsUpdateAllowed(GameOutcome::kPaused));
+    ASSERT_FALSE(IsUpdateAllowed(GameOutcome::kGameOver));
+}
+
 int main()
 {
     test_playing_when_alive_and_not_paused();
@@ -46,5 +53,6 @@ int main()
     test_terminal_state_only_game_over();
     test_outcome_to_string();
     test_dead_overrides_paused();
+    test_updates_are_allowed_only_while_playing();
     return test_summary();
 }

@@ -10,6 +10,7 @@ enum class GameOutcome
 
 GameOutcome EvaluateOutcome(bool alive, bool paused);
 bool IsTerminalState(GameOutcome outcome);
+bool IsUpdateAllowed(GameOutcome outcome);
 const char *OutcomeToString(GameOutcome outcome);
 
 #endif
