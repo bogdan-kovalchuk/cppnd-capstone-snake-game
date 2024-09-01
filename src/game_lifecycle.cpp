@@ -2,6 +2,10 @@
 
 GridPoint ComputeInitialHead(int grid_width, int grid_height)
 {
+    if (!IsValidGrid(grid_width, grid_height))
+    {
+        return GridPoint{0, 0};
+    }
     return GridPoint{grid_width / 2, grid_height / 2};
 }
 

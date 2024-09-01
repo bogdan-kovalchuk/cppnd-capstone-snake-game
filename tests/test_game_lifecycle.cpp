@@ -30,6 +30,16 @@ void test_initial_head_minimum_grid()
     ASSERT_EQ(head.y, 0);
 }
 
+void test_initial_head_invalid_grid_has_safe_coordinates()
+{
+    GridPoint zero = ComputeInitialHead(0, 10);
+    GridPoint negative = ComputeInitialHead(-1, 10);
+    ASSERT_EQ(zero.x, 0);
+    ASSERT_EQ(zero.y, 0);
+    ASSERT_EQ(negative.x, 0);
+    ASSERT_EQ(negative.y, 0);
+}
+
 void test_reset_snapshot_consistent()
 {
     SnakeSnapshot s = ComputeResetSnapshot(32, 32);
@@ -85,6 +95,7 @@ int main()
     test_initial_head_center_odd_grid();
     test_initial_head_rectangular_grid();
     test_initial_head_minimum_grid();
+    test_initial_head_invalid_grid_has_safe_coordinates();
     test_reset_snapshot_consistent();
     test_reset_snapshot_valid_various_grids();
     test_reset_snapshot_invalid_for_zero_grid();
