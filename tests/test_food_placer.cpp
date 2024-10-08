@@ -49,8 +49,10 @@ void test_returns_false_when_board_full()
     std::vector<GridPoint> body = {{0, 0}};
     RandomCoordFn rx = MakeSequenceFn({0});
     RandomCoordFn ry = MakeSequenceFn({0});
-    GridPoint out{};
+    GridPoint out{8, 8};
     ASSERT_FALSE(SelectFoodPosition(out, 1, 1, body, rx, ry, 4));
+    ASSERT_EQ(out.x, 0);
+    ASSERT_EQ(out.y, 0);
 }
 
 void test_invalid_grid_returns_false()
@@ -134,9 +136,11 @@ void test_full_board_does_not_consume_random_values()
 
 void test_missing_random_source_returns_false()
 {
-    GridPoint out{};
+    GridPoint out{8, 8};
     ASSERT_FALSE(SelectFoodPosition(out, 2, 2, {}, RandomCoordFn{},
                                     MakeSequenceFn({0}), 1));
+    ASSERT_EQ(out.x, 0);
+    ASSERT_EQ(out.y, 0);
 }
 
 void test_negative_grid_dimensions_return_false()

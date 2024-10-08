@@ -7,6 +7,7 @@ bool SelectFoodPosition(GridPoint &out, int grid_width, int grid_height,
                         const RandomCoordFn &random_x, const RandomCoordFn &random_y,
                         int max_random_attempts)
 {
+    out = GridPoint{0, 0};
     if (!IsValidGrid(grid_width, grid_height) || !random_x || !random_y)
     {
         return false;
